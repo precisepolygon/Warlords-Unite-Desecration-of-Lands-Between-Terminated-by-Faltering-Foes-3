@@ -15,5 +15,5 @@ class Potion:
 
 # WEAPONS LIST
 bronze_sword = Weapon("Bronze sword", 2)
-iron_sword = Weapon("Iron sword", 69)
+iron_sword = Weapon("Iron sword", 4)
 gods_fork = Weapon("Gods Fork", 999)

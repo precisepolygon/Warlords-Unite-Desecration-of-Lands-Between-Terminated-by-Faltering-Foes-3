@@ -6,7 +6,7 @@ import enemies
 # This class defines all of the attributes of the player.
 # They have a name, health, mana, attack power, and defense.
 class Player:
-    def __init__(self, name, max_health, current_health, attack, defense, level, experience, armor, weapon, gold):
+    def __init__(self, name, max_health, current_health, attack, defense, level, experience, armor, weapon, gold, next_level):
         self.name = name
         self.max_health = max_health
         self.current_health = current_health
@@ -17,6 +17,7 @@ class Player:
         self.armor = armor
         self.weapon = weapon
         self.gold = gold
+        self.next_level = next_level
 
 
 # GLOBAL PLAYER INVENTORY SEX
@@ -39,7 +40,7 @@ def game_loop(): # Defines what's inside of the game loop.
 def get_player(): # Defines an introductory function to get the player's name and set up an object for them
     global player
     name = input("Welcome to the game. Please enter your name: ") # Gets the user's input
-    player = Player(name, 10, 10, 2, 2, 1, 0, "Rags", "Stick", 10)
+    player = Player(name, 10, 10, 2, 2, 1, 0, "Rags", "Stick", 10, 20)
     return player
 
 def load_town():
@@ -52,7 +53,19 @@ def load_town():
 def add_item(item):
     inventory.append(item)
 
+# main post battle function
+def post_battle():
+    def level_up():  # function to specifically level up after battle
+        while player.experience >= player.next_level:
+            player.level += 1
+            player.experience = player.experience - player.next_level
+            player.next_level = round(player.next_level * 1.5)
 
+        print("You are now level", player.level)
+        print("Current exp:", player.experience)
+        print("Next level at", player.next_level, "exp.")
+
+    level_up()
 
     
         

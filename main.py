@@ -57,6 +57,9 @@ def add_item(item):
 def post_battle():
     def level_up():  # function to specifically level up after battle
         while player.experience >= player.next_level:
+            player.attack += 2
+            player.max_health += 5
+            player.defense += 2
             player.level += 1
             player.experience = player.experience - player.next_level
             player.next_level = round(player.next_level * 1.5)
@@ -64,6 +67,7 @@ def post_battle():
         print("You are now level", player.level)
         print("Current exp:", player.experience)
         print("Next level at", player.next_level, "exp.")
+        print("Your attack and defense are now:", player.attack, "and", player.defense)
 
     level_up()
 
